@@ -129,4 +129,56 @@ cat /var/log/system_report.log
 ![image](https://github.com/user-attachments/assets/2262485a-4f7d-43e7-856b-4093825b802d)
 
 
+## Task 2 - User Management and Access Control
+
+### Create User Accounts
+sudo useradd -m -s /bin/bash Sarah
+![image](https://github.com/user-attachments/assets/85568861-303f-4c7c-9e7f-bb2562e18847)
+sudo useradd -m -s /bin/bash Mike
+![image](https://github.com/user-attachments/assets/29a4f1a5-8742-4100-9949-8f765aae74a1)
+
+
+### Set Secure Passwords
+sudo passwd Sarah
+![image](https://github.com/user-attachments/assets/88318152-f772-4b72-bc09-c404df6d3fe8)
+
+sudo passwd Mike
+![image](https://github.com/user-attachments/assets/971d1de4-3372-4fec-b954-9ff6d689259b)
+
+
+### Set Up Isolated Directories
+sudo mkdir -p /home/Sarah/workspace
+![image](https://github.com/user-attachments/assets/9a087d21-8281-4542-88bd-d6ebde6bcc16)
+
+
+sudo mkdir -p /home/mike/workspace
+![image](https://github.com/user-attachments/assets/ac5293e6-d2fe-451b-b15a-88e919e086d8)
+
+
+### Set Permissions to Restrict Access
+sudo chown Sarah:Sarah /home/Sarah/workspace
+sudo chown Mike:Mike /home/mike/workspace
+sudo chmod 700 /home/Sarah/workspace
+sudo chmod 700 /home/mike/workspace
+![image](https://github.com/user-attachments/assets/c57889a3-750a-4c3f-9380-22a513e15942)
+
+![image](https://github.com/user-attachments/assets/97a38876-42e9-4f0c-9c75-b70c7e900035)
+![image](https://github.com/user-attachments/assets/cf5e9fea-af55-4d1e-a859-b40fd07011da)
+
+
+### Implement Password Policy
+![image](https://github.com/user-attachments/assets/84fda0e0-c9b9-4a7a-a08d-9ad80edad6a1)
+
+Edit `/etc/login.defs` and ensure the following parameters are set:
+PASS_MAX_DAYS   30
+PASS_MIN_DAYS   2
+PASS_WARN_AGE   7
+![image](https://github.com/user-attachments/assets/63600daa-29a7-4259-a4a6-26d63842a7ec)
+
+Apply the policy:
+
+![image](https://github.com/user-attachments/assets/ffb54158-bfd8-4802-ac65-5a3862c52712)
+
+sudo chage -M 30 -m 2 -W 7 Sarah
+sudo chage -M 30 -m 2 -W 7 Mike
 
