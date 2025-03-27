@@ -4,9 +4,6 @@ Configure a monitoring system to ensure system health, performance, and capacity
 
 Step 1: Install and Configure Monitoring Tools
 Install htop or nmon for CPU, Memory, and Process Monitoring
-For Debian-based systems (Ubuntu):
-
-
 sudo apt update
 sudo apt install htop nmon -y
 
