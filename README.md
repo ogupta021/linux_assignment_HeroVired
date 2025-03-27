@@ -1,4 +1,4 @@
-## Task 1 - 
+## Task 1 - System Monitoring & Setup
 
 ## Objective
 This setup ensures system health, performance monitoring, and capacity planning for a development environment. The goal is to track CPU, memory, disk usage, and identify resource-intensive processes.
@@ -127,8 +127,4 @@ echo "0 0 * * * /root/monitoring_report.sh" | sudo tee -a /etc/crontab
 
 ### Check Logs
 cat /var/log/system_report.log
-
-
-```
-
 
