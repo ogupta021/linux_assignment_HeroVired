@@ -1,0 +1,70 @@
+==== System Monitoring Report ====
+Thu Mar 27 13:13:48 IST 2025
+
+== CPU Usage ==
+top - 13:13:48 up 11 min,  1 user,  load average: 0.00, 0.07, 0.07
+Tasks:  37 total,   1 running,  36 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.8 us,  0.0 sy,  0.0 ni, 99.2 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  11854.0 total,   9592.3 free,    466.9 used,   1794.9 buff/cache
+MiB Swap:   3072.0 total,   3072.0 free,      0.0 used.  11091.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+      1 root      20   0  167164  14820   8312 S   0.0   0.1   0:06.38 systemd
+      2 root      20   0    2784   1928   1796 S   0.0   0.0   0:00.01 init-systemd(Ub
+      8 root      20   0    2788    132    132 S   0.0   0.0   0:00.01 init
+
+== Memory Usage ==
+               total        used        free      shared  buff/cache   available
+Mem:            11Gi       466Mi       9.4Gi       3.0Mi       1.8Gi        10Gi
+Swap:          3.0Gi          0B       3.0Gi
+
+== Disk Usage ==
+Filesystem      Size  Used Avail Use% Mounted on
+none            5.8G     0  5.8G   0% /usr/lib/modules/5.15.167.4-microsoft-standard-WSL2
+none            5.8G  4.0K  5.8G   1% /mnt/wsl
+drivers         281G   81G  201G  29% /usr/lib/wsl/drivers
+/dev/sdc       1007G  2.1G  954G   1% /
+none            5.8G   84K  5.8G   1% /mnt/wslg
+none            5.8G     0  5.8G   0% /usr/lib/wsl/lib
+rootfs          5.8G  2.4M  5.8G   1% /init
+none            5.8G  856K  5.8G   1% /run
+none            5.8G     0  5.8G   0% /run/lock
+none            5.8G     0  5.8G   0% /run/shm
+tmpfs           4.0M     0  4.0M   0% /sys/fs/cgroup
+none            5.8G   76K  5.8G   1% /mnt/wslg/versions.txt
+none            5.8G   76K  5.8G   1% /mnt/wslg/doc
+C:\             281G   81G  201G  29% /mnt/c
+D:\             196G   11G  185G   6% /mnt/d
+E:\             932G  528G  404G  57% /mnt/e
+snapfuse        128K  128K     0 100% /snap/bare/5
+snapfuse         74M   74M     0 100% /snap/core22/1748
+snapfuse         73M   73M     0 100% /snap/core22/607
+snapfuse         92M   92M     0 100% /snap/gtk-common-themes/1535
+snapfuse         54M   54M     0 100% /snap/snapd/18933
+snapfuse        132M  132M     0 100% /snap/ubuntu-desktop-installer/1286
+snapfuse        151M  151M     0 100% /snap/ubuntu-desktop-installer/967
+
+== Top 10 Processes by CPU Usage ==
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.9  0.1 167164 14820 ?        Ss   13:02   0:06 /lib/systemd/systemd --system --deserialize 22
+root          91  0.4  0.0   4776  1776 ?        Ss   13:02   0:02 snapfuse /var/lib/snapd/snaps/snapd_18933.snap /snap/snapd/18933 -o ro,nodev,allow_other,suid
+root         379  0.3  0.7 861240 86240 ?        Sl   13:02   0:02 /snap/ubuntu-desktop-installer/1286/usr/bin/python3.10 -m subiquity.cmd.server --use-os-prober --storage-version=2 --postinst-hooks-dir=/snap/ubuntu-desktop-installer/1286/etc/subiquity/postinst.d
+root          79  0.1  0.0   4692  1784 ?        Ss   13:02   0:00 snapfuse /var/lib/snapd/snaps/core22_1748.snap /snap/core22/1748 -o ro,nodev,allow_other,suid
+root          95  0.1  0.0   4692  1772 ?        Ss   13:02   0:01 snapfuse /var/lib/snapd/snaps/ubuntu-desktop-installer_1286.snap /snap/ubuntu-desktop-installer/1286 -o ro,nodev,allow_other,suid
+message+     127  0.1  0.0   8880  5152 ?        Ss   13:02   0:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root           2  0.0  0.0   2784  1928 ?        Sl   13:02   0:00 /init
+root           8  0.0  0.0   2788   132 ?        Sl   13:02   0:00 plan9 --control-socket 7 --log-level 4 --server-fd 8 --pipe-fd 10 --log-truncate
+root          78  0.0  0.0   4496   196 ?        Ss   13:02   0:00 snapfuse /var/lib/snapd/snaps/bare_5.snap /snap/bare/5 -o ro,nodev,allow_other,suid
+
+== Top 10 Processes by Memory Usage ==
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         379  0.3  0.7 861240 86240 ?        Sl   13:02   0:02 /snap/ubuntu-desktop-installer/1286/usr/bin/python3.10 -m subiquity.cmd.server --use-os-prober --storage-version=2 --postinst-hooks-dir=/snap/ubuntu-desktop-installer/1286/etc/subiquity/postinst.d
+root       12624  0.0  0.3 1690328 41576 ?       Ssl  13:05   0:00 /usr/lib/snapd/snapd
+root         240  0.0  0.1 107220 21296 ?        Ssl  13:02   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root       12189  0.0  0.1 293032 20876 ?        Ssl  13:05   0:00 /usr/libexec/packagekitd
+root         152  0.0  0.1  30128 19088 ?        Ss   13:02   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root           1  0.9  0.1 167164 14820 ?        Ss   13:02   0:06 /lib/systemd/systemd --system --deserialize 22
+root       11975  0.0  0.1  64096 14780 ?        S<s  13:05   0:00 /lib/systemd/systemd-journald
+systemd+   11972  0.0  0.1  26200 13640 ?        Ss   13:05   0:00 /lib/systemd/systemd-resolved
+om           435  0.0  0.0  16908  8916 ?        Ss   13:02   0:00 /lib/systemd/systemd --user
+==== End of Report ====
