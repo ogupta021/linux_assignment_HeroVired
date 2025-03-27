@@ -176,9 +176,11 @@ PASS_WARN_AGE   7
 ![image](https://github.com/user-attachments/assets/63600daa-29a7-4259-a4a6-26d63842a7ec)
 
 Apply the policy:
+sudo chage -M 30 -m 2 -W 7 Sarah
+sudo chage -M 30 -m 2 -W 7 Mike
 
 ![image](https://github.com/user-attachments/assets/ffb54158-bfd8-4802-ac65-5a3862c52712)
 
-sudo chage -M 30 -m 2 -W 7 Sarah
-sudo chage -M 30 -m 2 -W 7 Mike
+
+
 
