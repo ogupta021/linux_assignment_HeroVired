@@ -323,9 +323,11 @@ cat /var/log/nginx_backup.log
 
 ### List Contents of Backup  
 tar -tzf /backups/apache_backup_$(date +%F).tar.gz  
+
 ![image](https://github.com/user-attachments/assets/6914dcd5-34a5-4869-88ac-d5f4126210d4)
 
 tar -tzf /backups/nginx_backup_$(date +%F).tar.gz  
+
 ![image](https://github.com/user-attachments/assets/e66750c7-325a-42e5-876b-5612f4783bc7)
 
 
