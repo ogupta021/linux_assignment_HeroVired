@@ -184,5 +184,143 @@ sudo chage -M 30 -m 2 -W 7 Mike
 ![image](https://github.com/user-attachments/assets/ffb54158-bfd8-4802-ac65-5a3862c52712)
 
 
+----------------------------------------------------------------------------------------------------------------------------
 
+## Task 3 - Backup Configuration for Web Servers
+
+# Objective  
+This project sets up automated backups for:  
+- Apache Web Server (Sarah)  
+- Nginx Web Server (Mike)  
+
+The script ensures that configuration files and web content are backed up securely.  
+
+## Backup Details  
+
+| Server | Configuration Path | Web Root Directory |  
+|--------|-------------------|--------------------|  
+| Apache (Sarah) | `/etc/apache2/` (Ubuntu) or `/etc/httpd/` (RHEL) | `/var/www/html/` |  
+| Nginx (Mike) | `/etc/nginx/` | `/usr/share/nginx/html/` |  
+
+## Step 1: Install Apache & Nginx (If Not Installed)  
+
+### For Apache  
+sudo apt update  
+sudo apt install apache2 -y  
+
+### For Nginx  
+sudo apt install nginx -y  
+
+## Step 2: Create Backup Scripts  
+
+### Apache Backup Script (`apache_backup.sh`)  
+Create the script:  
+sudo nano /root/apache_backup.sh  
+  
+Paste the following script:  
+
+#!/bin/bash  
+
+DATE=$(date +%F)  
+BACKUP_DIR="/backups"  
+BACKUP_FILE="$BACKUP_DIR/apache_backup_$DATE.tar.gz"  
+
+mkdir -p $BACKUP_DIR  
+
+tar -czf $BACKUP_FILE -C / etc/apache2 var/www/html  
+
+if [ $? -eq 0 ]; then  
+    echo "Backup successful: $BACKUP_FILE" > /var/log/apache_backup.log  
+else  
+    echo "Backup failed!" > /var/log/apache_backup.log  
+fi  
+```  
+Save and exit (`CTRL+X`, then `Y` and `Enter`).  
+
+### Nginx Backup Script (`nginx_backup.sh`)  
+Create the script:  
+sudo nano /root/nginx_backup.sh  
+Paste the following script:
+  
+#!/bin/bash  
+
+DATE=$(date +%F)  
+BACKUP_DIR="/backups"  
+BACKUP_FILE="$BACKUP_DIR/nginx_backup_$DATE.tar.gz"  
+
+mkdir -p $BACKUP_DIR  
+
+tar -czf $BACKUP_FILE -C / etc/nginx usr/share/nginx/html  
+
+if [ $? -eq 0 ]; then  
+    echo "Backup successful: $BACKUP_FILE" > /var/log/nginx_backup.log  
+else  
+    echo "Backup failed!" > /var/log/nginx_backup.log  
+fi  
+```  
+Save and exit.  
+
+## Step 3: Make Scripts Executable  
+Run the following commands:  
+
+sudo chmod +x /root/apache_backup.sh  
+sudo chmod +x /root/nginx_backup.sh  
+  
+
+## Step 4: Schedule Backups with Cron Jobs  
+Set up cron jobs to automate backups every Tuesday at 12:00 AM:  
+
+sudo crontab -e  
+Add the following lines at the end of the file:  
+
+0 0 * * 2 /root/apache_backup.sh  
+0 0 * * 2 /root/nginx_backup.sh  
+  
+Save and exit.  
+
+## Step 5: Verify Backups  
+### Run Scripts Manually  
+
+sudo /root/apache_backup.sh  
+sudo /root/nginx_backup.sh  
+
+### Check Backup Files  
+ls -lh /backups/  
+
+### Check Log Files  
+cat /var/log/apache_backup.log  
+cat /var/log/nginx_backup.log  
+
+
+### List Contents of Backup  
+tar -tzf /backups/apache_backup_$(date +%F).tar.gz  
+tar -tzf /backups/nginx_backup_$(date +%F).tar.gz  
+
+## Troubleshooting  
+
+### Nginx Fails to Start  
+Check service status:  
+```bash  
+sudo systemctl status nginx  
+```  
+If there's an error, check logs:  
+```bash  
+journalctl -xeu nginx.service  
+```  
+To fix common issues:  
+```bash  
+sudo nginx -t  
+sudo systemctl restart nginx  
+```  
+
+### Apache Backup Error (`tar: Cannot stat`)  
+Check Apache installation:  
+ls /etc/apache2/ 
+  
+If missing, update the backup script with the correct path.  
+
+## Expected Outputs  
+Backup files created in `/backups/`  
+Cron jobs scheduled for automation  
+Logs available in `/var/log/apache_backup.log` and `/var/log/nginx_backup.log`  
 
