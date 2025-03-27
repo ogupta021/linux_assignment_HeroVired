@@ -127,4 +127,7 @@ echo "0 0 * * * /root/monitoring_report.sh" | sudo tee -a /etc/crontab
 
 ### Check Logs
 cat /var/log/system_report.log
+![image](https://github.com/user-attachments/assets/2262485a-4f7d-43e7-856b-4093825b802d)
+
+
 
